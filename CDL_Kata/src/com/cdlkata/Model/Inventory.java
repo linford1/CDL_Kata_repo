@@ -1,4 +1,4 @@
-package com.Items;
+package com.cdlkata.Model;
  
 import java.util.HashMap;
 import java.util.LinkedHashMap;

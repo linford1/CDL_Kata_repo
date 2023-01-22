@@ -1,4 +1,4 @@
-package com.Items;
+package com.cdlkata.Model;
 
 import java.util.Objects;
 
@@ -65,6 +65,12 @@ public class LineItem {
 		return Objects.equals(itemID, other.itemID);
 	}
 
+	@Override
+	public String toString() {
+		// This can be improved
+		return super.toString();
+	}
+	
 	public void reduceQuantityBy(int quantityReducedBy) {
 		// TODO Auto-generated method stub
 		this.quantity -= quantityReducedBy;

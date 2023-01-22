@@ -1,10 +1,14 @@
-package com.Items;
+package com.cdlkata.services;
  
 import java.util.HashMap; 
 import java.util.Map;
 import java.util.Objects;
 
-public class ShoppingCart {
+import com.cdlkata.Model.Inventory;
+import com.cdlkata.Model.Item;
+import com.cdlkata.Model.LineItem;
+
+public class ShoppingCartService {
 	
 	private Map<String,LineItem> itemsInCart = new HashMap<>();
 	
@@ -13,7 +17,7 @@ public class ShoppingCart {
 	private final Inventory inventory;
 	
 	 
-	public ShoppingCart(Inventory inventory) {
+	public ShoppingCartService(Inventory inventory) {
 		 this.inventory = inventory;
 	}
 	
@@ -23,8 +27,7 @@ public class ShoppingCart {
 	{
 		totalPrice = 0; 
 		
-		itemsInCart.entrySet().forEach(entry -> {
-		   // System.out.println(entry.getKey().getName() + " " + entry.getValue());
+		itemsInCart.entrySet().forEach(entry -> { 
 		    
 		    if(inventory.get(entry.getValue().getItemID()).isHasSale())
 		    { 
@@ -38,8 +41,7 @@ public class ShoppingCart {
  	
 		    }
 		    else
-		    {
-		    	//System.out.println(entry.getValue().getItemName()+ " : "+entry.getValue().getQuantity() * inventory.get(entry.getValue().getItemID()).getUnit_Price());
+		    { 
 		    	totalPrice += entry.getValue().getQuantity() * inventory.get(entry.getValue().getItemID()).getUnit_Price(); 
 		    }
 		     
@@ -61,8 +63,7 @@ public class ShoppingCart {
 			LineItemInCart.increaseQuanitity(lineItemToAdd.getQuantity()); 
 		}
 		else
-		{
-			System.out.println("l-item quantity: " +lineItemToAdd.getQuantity());
+		{ 
 			Item item = inventory.get(lineItemToAdd.getItemID());
 			lineItemToAdd.setItemName(item.getName());
 			lineItemToAdd.setPrice(item.getUnit_Price());

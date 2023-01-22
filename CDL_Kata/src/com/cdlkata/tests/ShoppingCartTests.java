@@ -1,4 +1,4 @@
-package com.tests;
+package com.cdlkata.tests;
    
 import static org.junit.jupiter.api.Assertions.assertEquals;
  
@@ -7,14 +7,14 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.Items.Inventory;
-import com.Items.Item;
-import com.Items.LineItem;
-import com.Items.ShoppingCart; 
+import com.cdlkata.Model.Inventory;
+import com.cdlkata.Model.Item;
+import com.cdlkata.Model.LineItem;
+import com.cdlkata.services.ShoppingCartService; 
 
 public class ShoppingCartTests {
 	private Inventory inventory;
-	private ShoppingCart cart;
+	private ShoppingCartService cart;
 	
 	
 	@Before
@@ -28,7 +28,7 @@ public class ShoppingCartTests {
 		 inventory = new Inventory();
 		 inventory.add(A);
 		 inventory.add(B);
-		 cart = new ShoppingCart(inventory);
+		 cart = new ShoppingCartService(inventory);
 		 
 		 }
 	

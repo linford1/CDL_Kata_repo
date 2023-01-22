@@ -1,12 +1,12 @@
-package com.main;
+package com.cdlkata.main;
 
 import java.text.NumberFormat;
 import java.util.Scanner;
 
-import com.Items.Inventory;
-import com.Items.Item;
-import com.Items.LineItem;
-import com.Items.ShoppingCart;
+import com.cdlkata.Model.Inventory;
+import com.cdlkata.Model.Item;
+import com.cdlkata.Model.LineItem;
+import com.cdlkata.services.ShoppingCartService;
 
 public class Kata_Main {
 
@@ -24,7 +24,7 @@ public class Kata_Main {
 		 inventory.add(B);
 		 inventory.add(C);
 		 inventory.add(D);
-		 ShoppingCart cart = new ShoppingCart(inventory); 
+		 ShoppingCartService cart = new ShoppingCartService(inventory); 
 		 
 		 LineItem li1 = new LineItem("1");
 		 LineItem li2= new LineItem("2"); 
@@ -35,7 +35,7 @@ public class Kata_Main {
 		 
 		 while (true)
 		 {
-			 System.out.println("Hi");
+			 System.out.println("Checkout System");
 			 System.out.println("1: Handle Inventory, 2: List Items Store Inventory, 3: Shopping Cart");
 			 int InitialLogicOp = reader.nextInt(); 
 			 
@@ -90,9 +90,14 @@ public class Kata_Main {
 					 Item ic = inventory.get(Integer.toString(UpdateItemID));
 					 if(ic != null)
 					 {
-						 System.out.println(ic.getId()+ ": " + ic.getName() +" : " + formatter.format(ic.getUnit_Price()) + " (Quantity for discount: "+ ic.getQuantity_For_Special() + ") (discoutned price: " +formatter.format(ic.getSpecial_Price()) +")" );  
+						 System.out.println(ic.getId()+ ": " + ic.getName() +" : " + formatter.format(ic.getUnit_Price()) + " (Quantity for discount: "+ ic.getQuantity_For_Special() + ") (discounted price: " +formatter.format(ic.getSpecial_Price()) +")" );  
 						   
 					 } 
+					 
+					 
+					 
+					 
+					 
 				 }
 					 else if(HandleInventoryOp == 3)
 					 {
