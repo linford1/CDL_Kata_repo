@@ -14,10 +14,10 @@ public class Kata_Main {
 
 		 Scanner reader = new Scanner(System.in);  
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();	
-		 Item A = new Item("1","Apples",.50,1.30,3,true);
-		 Item B = new Item("2","Banana",.30,.45,2,true);
-		 Item C = new Item("3","Carrot",.20);
-		 Item D = new Item("4","Date",.15);
+		 Item A = new Item("1","A",.50,1.30,3,true);
+		 Item B = new Item("2","B",.30,.45,2,true);
+		 Item C = new Item("3","C",.20);
+		 Item D = new Item("4","D",.15);
 		 
 		Inventory inventory = new Inventory();
 		 inventory.add(A);
@@ -93,11 +93,27 @@ public class Kata_Main {
 						 System.out.println(ic.getId()+ ": " + ic.getName() +" : " + formatter.format(ic.getUnit_Price()) + " (Quantity for discount: "+ ic.getQuantity_For_Special() + ") (discounted price: " +formatter.format(ic.getSpecial_Price()) +")" );  
 						   
 					 } 
+					    
+					 System.out.println("Item Name: "); 
+			
+					 ic.setName(reader.next());
 					 
+					 System.out.println("Item UnitPrice (double): "); 
+					 ic.setUnit_Price(reader.nextDouble());
 					 
+					 System.out.println("Item has special salePrice(double): "); 
+					 ic.setHasSale(reader.nextBoolean());
 					 
+					 if(ic.isHasSale())
+					 {
+						System.out.println("Quantity for special price (int): ");  
+						ic.setQuantity_For_Special(reader.nextInt());
+						
+						System.out.println("Item Special price (double): "); 
+						ic.setSpecial_Price(reader.nextDouble());  
+					 } 
 					 
-					 
+					 System.out.println("Item details updated");
 				 }
 					 else if(HandleInventoryOp == 3)
 					 {
@@ -164,20 +180,14 @@ public class Kata_Main {
 				 if(basketOperationLogicNumber == 1)
 				 {
 					 System.out.println(""); 
-					 System.out.println("--Adding Item(s) to cart--");
-					 System.out.println("----All items in inventory----"); 
-					 inventory.listItemsInInventory().entrySet().forEach(entry -> { 
-						 Item ic = entry.getValue();
+					 System.out.println("--Adding Item(s) to cart--"); 
+					 System.out.println("--- Items in basket ---"); 
+					 
+					 cart.listItemsInCart().entrySet().forEach(entry -> { 
+						 LineItem lineItem = entry.getValue();
 						 
-						 if(ic.isHasSale())
-						    {
-							  System.out.println(ic.getId()+ ": " + ic.getName() +" : " + formatter.format(ic.getUnit_Price()) + " (Quantity for discount: "+ ic.getQuantity_For_Special() + ") (discoutned price: " +formatter.format(ic.getSpecial_Price()) +")" );  
-						    }
-						 else
-						 {
-						      System.out.println(ic.getId()+ ": " + ic.getName() +" : " + formatter.format(ic.getUnit_Price()));  
-						 }
-					 });
+						 System.out.println(lineItem.getItemID()+ ": " +lineItem.getItemName()+ ": " + lineItem.getQuantity() +" Unit Price: " + inventory.get(lineItem.getItemID()).getUnit_Price());  
+					 }); 
 
 					 System.out.println(" ");  
 
@@ -214,21 +224,15 @@ public class Kata_Main {
 				 {
 					 System.out.println(""); 
 					 System.out.println("--Removing Item(s) from cart--");
-					 System.out.println("----All items in inventory----"); 
-					 inventory.listItemsInInventory().entrySet().forEach(entry -> { 
-						 Item ic = entry.getValue();
-						 
-						 if(ic.isHasSale())
-						    {
-							  System.out.println(ic.getId()+ ": " + ic.getName() +" : " + formatter.format(ic.getUnit_Price()) + " (Quantity for discount: "+ ic.getQuantity_For_Special() + ") (discoutned price: " +formatter.format(ic.getSpecial_Price()) +")" );  
-						    }
-						 else
-						 {
-						      System.out.println(ic.getId()+ ": " + ic.getName() +" : " + formatter.format(ic.getUnit_Price()));  
-						 }
-					 });
+					 System.out.println("--- Items in basket ---"); 
+					 
+					 cart.listItemsInCart().entrySet().forEach(entry -> { 
+						 LineItem lineItem = entry.getValue(); 
+						 System.out.println(lineItem.getItemID()+ ": " + lineItem.getItemName()+ ": " + lineItem.getQuantity() +" Unit Price: " + inventory.get(lineItem.getItemID()).getUnit_Price());  
+					 }); 
 
 					 System.out.println(" ");  
+ 
 
 					 System.out.println("ID of Item to remove");
 					 
@@ -250,10 +254,16 @@ public class Kata_Main {
 						 System.out.println("Quantity to remove"); 
 						 itemQuantityToremove = reader.nextInt();
 						  
+						 if(itemQuantityToremove > 0) 
+						 {
 						 LineItem litem = new LineItem(cart.getLineItem(itemID).getItemID(),itemQuantityToremove); 
 						 
 						 cart.removeItem(litem);
-						 
+						 }
+						 else
+						 {
+							 System.out.println("Quantity to remove cannot be less than 1");  
+						 }
 					 }
 					 else
 					 {

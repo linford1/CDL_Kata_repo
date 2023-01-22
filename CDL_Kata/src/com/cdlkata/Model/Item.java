@@ -52,10 +52,7 @@ public class Item {
 	}
 	public double getSpecial_Price() {
 		return special_Price;
-	}
-	public void setSpecial_Price(int special_Price) {
-		this.special_Price = special_Price;
-	}
+	} 
 	public int getQuantity_For_Special() {
 		return Quantity_For_Special;
 	}
