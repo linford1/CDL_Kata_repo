@@ -36,7 +36,7 @@ public class Kata_Main {
 		 while (true)
 		 {
 			 System.out.println("Checkout System");
-			 System.out.println("1: Handle Inventory, 2: List Items Store Inventory, 3: Shopping Cart");
+			 System.out.println("1: Handle Inventory, 2: List Items Store Inventory, 3: Handle Shopping Cart, 4: Close Application");
 			 int InitialLogicOp = reader.nextInt(); 
 			 
 			 if(InitialLogicOp == 1)
@@ -271,8 +271,12 @@ public class Kata_Main {
 					 }
 				 }
 			 }
-		 }
-	// reader.close();
-	  
-	} 
+			 else if(InitialLogicOp == 4)
+			 {
+				 reader.close();
+				 System.out.println("Application closed!"); 
+				 break;
+			 }  
+		}
+	}
 }
